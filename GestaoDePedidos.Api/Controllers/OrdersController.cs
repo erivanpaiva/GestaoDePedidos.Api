@@ -63,7 +63,7 @@ namespace GestaoDePedidos.Api.Controllers
             var order = new Order
             {
                 CustomerId = dto.CustomerId,
-                Status = "NEW",
+                Status = "NOVO",
                 CreatedAt = DateTime.UtcNow,
                 OrderItems = new List<OrderItem>()
             };
