@@ -21,6 +21,8 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<GestaoDePedidosDbContext>();
 
+    context.Database.Migrate();
+
     if (!context.Customers.Any())
     {
         context.Customers.Add(
@@ -55,6 +57,27 @@ using (var scope = app.Services.CreateScope())
                 Name = "Mouse Gamer Razer DeathAdder Essential",
                 Category = "Eletrônicos",
                 PriceCents = 17900,
+                Active = true
+            },
+            new Product
+            {
+                Name = "Camiseta Básica Masculina Nike",
+                Category = "Vestuário",
+                PriceCents = 8500,
+                Active = false
+            },
+            new Product
+            {
+                Name = "Calça Adicolor Classics Firebird Adidas",
+                Category = "Vestuário",
+                PriceCents = 24900,
+                Active = false
+            },
+            new Product
+            {
+                Name = "Boné de Gabardine de Algodão Lacoste",
+                Category = "Vestuário",
+                PriceCents = 39900,
                 Active = true
             }
         );
