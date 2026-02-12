@@ -29,5 +29,28 @@ namespace GestaoDePedidos.Api.Controllers
 
             return Ok(orders);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetOrder(int id)
+        {
+            var order = await _context.Orders
+                .Where(o => o.Id == id)
+                .Select(o => new
+                {
+                    o.Id,
+                    o.Status,
+                    o.CreatedAt,
+                    Total = o.OrderItems.Sum(i => i.Quantity * i.UnitPriceCents),
+                    Items = o.OrderItems.Select(i => new
+                    {
+                        i.ProductId,
+                        i.Quantity,
+                        i.UnitPriceCents
+                    })
+                }).FirstOrDefaultAsync();
+            if (order == null)
+                return NotFound();
+            return Ok(order);
+        }
     }
 }
