@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GestaoDePedidos.Api.Data;
+using GestaoDePedidos.Api.Models;
+using GestaoDePedidos.Api.DTOs;
 
 namespace GestaoDePedidos.Api.Controllers
 {
@@ -51,6 +53,43 @@ namespace GestaoDePedidos.Api.Controllers
             if (order == null)
                 return NotFound();
             return Ok(order);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateOrder(CreateOrderDto dto)
+        {
+            if (dto.Items == null || !dto.Items.Any())
+                return BadRequest("O pedido deve conter ao menos um item.");
+            var order = new Order
+            {
+                CustomerId = dto.CustomerId,
+                Status = "NEW",
+                CreatedAt = DateTime.UtcNow,
+                OrderItems = new List<OrderItem>()
+            };
+
+            foreach (var item in dto.Items)
+            {
+                var product = await _context.Products.FindAsync(item.ProductId);
+
+                if (product == null)
+                    return BadRequest($"Produto com ID {item.ProductId} não encontrado.");
+
+                if (!product.Active)
+                    return BadRequest($"Produto com ID {item.ProductId} está inativo.");
+
+                order.OrderItems.Add(new OrderItem
+                {
+                    ProductId = product.Id,
+                    Quantity = item.Quantity,
+                    UnitPriceCents = product.PriceCents
+                });
+            }
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, new { order.Id });
+
         }
     }
 }
