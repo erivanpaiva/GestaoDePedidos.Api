@@ -1,0 +1,87 @@
+﻿:root {
+    --primary: #2563EB;
+    --primary-soft: #DBEAFE;
+    --primary-hover: #1D4ED8;
+    --background: #F3F8FF;
+    --text-dark: #1E293B;
+    --radius: 12px;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    background: var(--background);
+}
+
+.site-title {
+    color: var(--text-dark);
+}
+
+.title-icon {
+    color: var(--primary);
+}
+
+
+.app-header {
+    background: #FFF;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.search-input {
+    width: 200px;
+    border-radius: var(--radius);
+}
+
+.category-select {
+    width: 150px;
+    border-radius: var(--radius);
+}
+
+.soft-card {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.section-title {
+    font-weight: 600;
+}
+
+.product-card {
+    background: #FFF;
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.product-card button {
+    background: var(--primary);
+    color: #FFF;
+    border: none;
+    border-radius: var(--radius);
+    transition: 0.2s ease;
+}
+
+.product-card button:hover {
+    background: var(--primary-hover);
+}
+
+.cart-indicator {
+    font-size: 1.2rem;
+}
+
+#orderList .card {
+    border-radius: var(--radius);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.btn {
+    background: var(--primary);
+    color: #FFF;
+    border: none;
+    border-radius: var(--radius);
+    transition: 0.2s ease;
+}

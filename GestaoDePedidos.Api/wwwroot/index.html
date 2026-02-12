@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Gestão de Pedidos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="app-header py-3 mb-4">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <h4 class="m-0 fw-semibold site-title">
+                <i class="bi bi-bag title-icon"></i>
+                Gestão de Pedidos
+            </h4>
+
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <input type="text" id="search"
+                       class="form-control form-control-sm search-input"
+                       placeholder="Buscar Produto">
+                <select id="category"
+                        class="form-select form-select-sm category-select">
+                    <option value="">Categorias</option>
+                </select>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="activeOnly">
+                    <label class="form-check-label small" for="activeOnly">
+                        Produtos Ativos
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h5 class="section-title mb-3">Produtos</h5>
+        <div id="productList" class="row g-4 mb-5"></div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-lg-6">
+                <div class="card soft-card p-4 h-100">
+                    <h5 class="mb-3">
+                        <i class="bi bi-cart3 me-2 text-primary"></i>
+                        Carrinho de Compras
+                    </h5>
+                    <div id="cartItems"></div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <strong>Total:</strong>
+                        <span class="fs-5">R$ <span id="cartTotal">0,00</span></span>
+                    </div>
+                    <button id="checkoutBtn" class="btn btn-primary w-100 mt-3">
+                        Finalizar Pedido
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card soft-card p-4 h-100">
+                    <h5 class="mb-3">
+                        <i class="bi bi-receipt-cutoff me-2 text-primary"></i>
+                        Últimos Pedidos
+                    </h5>
+                    <div id="ordersList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
